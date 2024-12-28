@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Resumate</title>
+  
+  <!-- Remixicon for Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    /* Global Variables */
+    :root {
+      --primary-color: #4f46e5;
+      --btn-hover-color: #4338ca;
+      --text-content: #6b7280;
+      --lg-heading: #111827;
+      --fixed-header-height: 80px;
+    }
+
+    /* Reset Styles */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #eef2ff, #dbeafe);
+      color: var(--text-content);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    .header {
+      height: var(--fixed-header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav .logo h2 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+
+    /* Login Section */
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - var(--fixed-header-height));
+      padding: 2rem;
+    }
+
+    .login-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      padding: 2rem;
+    }
+
+    .login-container .main-heading {
+      font-size: 1.8rem;
+      color: var(--lg-heading);
+      margin-bottom: 1rem;
+    }
+
+    .login-container .info-text {
+      color: var(--text-content);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-content);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: #374151;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary-color);
+    }
+
+    .login-btn {
+      width: 100%;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: var(--btn-hover-color);
+    }
+
+    .login-footer {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-content);
+    }
+
+    .login-footer a {
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <h2>Resumate</h2>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Login Section -->
+  <section class="wrapper">
+    <div class="login-container">
+      <h2 class="main-heading">Welcome Back!</h2>
+      <p class="info-text">Login to access your personalized AI interview assistant.</p>
+
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+
+      <div class="login-footer">
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

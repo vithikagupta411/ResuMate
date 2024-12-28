@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Score Generator</title>
+</head>
+<body>
+    <h1>ATS Score Analysis</h1>
+
+    <!-- Form to upload Resume and Job Description PDFs -->
+    <form method="POST" enctype="multipart/form-data">
+        <label for="resume">Upload Resume (PDF):</label>
+        <input type="file" name="resume" required><br><br>
+
+        <label for="job_description">Upload Job Description (PDF):</label>
+        <input type="file" name="job_description" required><br><br>
+
+        <input type="submit" value="Generate ATS Score">
+    </form>
+
+    {% if ats_score is not none %}
+    <h3>Generated ATS Score: {{ ats_score }}/100</h3>
+    <pre>Speedometer: {{ speedometer }}</pre>
+
+    <h4>Feedback:</h4>
+    <p>{{ ats_feedback }}</p>
+
+    <h4>Suggested Courses:</h4>
+    {% if course_suggestions %}
+        {% for skill, courses in course_suggestions.items() %}
+            <h5>{{ skill }} Courses:</h5>
+            <h6>Free Courses:</h6>
+            <ul>
+                {% for course in courses["Free"] %}
+                    <li><a href="{{ course['link'] }}">{{ course['name'] }}</a></li>
+                {% endfor %}
+            </ul>
+            <h6>Paid Courses:</h6>
+            <ul>
+                {% for course in courses["Paid"] %}
+                    <li><a href="{{ course['link'] }}">{{ course['name'] }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p>No specific courses found. Consider improving general skills like communication and teamwork.</p>
+    {% endif %}
+    {% endif %}
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS Result</title>
+</head>
+<body>
+    <h1>Upload Resume and Job Description</h1>
+    <form action="/ats-result" method="POST" enctype="multipart/form-data">
+        <label for="resume">Upload Resume (PDF):</label>
+        <input type="file" name="resume" id="resume" accept="application/pdf" required><br><br>
+
+        <label for="jobDescription">Upload Job Description (PDF):</label>
+        <input type="file" name="jobDescription" id="jobDescription" accept="application/pdf" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <% if (feedback) { %>
+        <h2>ATS Score: <%= score %>/100</h2>
+        <pre>Speedometer: <%= speedometer %></pre>
+        <h3>Feedback:</h3>
+        <p><%= feedback %></p>
+
+        <% if (suggestedCourses) { %>
+            <h3>Suggested Courses:</h3>
+            <% for (let skill in suggestedCourses) { %>
+                <h4><%= skill %> Courses:</h4>
+                <p>Free Courses:</p>
+                <ul>
+                    <% suggestedCourses[skill].Free.forEach(course => { %>
+                        <li><a href="<%= course.link %>"><%= course.name %></a></li>
+                    <% }); %>
+                </ul>
+                <p>Paid Courses:</p>
+                <ul>
+                    <% suggestedCourses[skill].Paid.forEach(course => { %>
+                        <li><a href="<%= course.link %>"><%= course.name %></a></li>
+                    <% }); %>
+                </ul>
+            <% } %>
+        <% } else { %>
+            <p>No specific courses found.</p>
+        <% } %>
+    <% } %>
+</body>
+</html>
